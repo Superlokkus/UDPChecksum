@@ -48,8 +48,8 @@ int main(int argc, const char * argv[]) {
 
     for( std::string::size_type i = 0; i != input.length(); i += 2 )
     {
-        char t[3] = { input[i], input[i+1], '\0' };
-        packet.push_back(std::strtoul(t, nullptr, 16));
+        const std::string t = { input[i], input.at(i+1) };
+        packet.push_back(stoul(t, nullptr, 16));
     }
     
     std::cout << "Packet data was: \"";
@@ -61,7 +61,7 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "\"" << std::endl;
     
-    std::cout << std::hex <<udp_checksum(packet) << std::endl;
+    std::cout << "UDP Checksum: " << std::hex <<udp_checksum(packet) << std::endl;
     
     
     
